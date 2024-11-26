@@ -1,0 +1,40 @@
+# Service Configuration
+service:
+  name: game-hub-service
+  type: NodePort
+  port: 80
+  targetPort: 5173
+  nodePort: null
+
+# Service Account Configuration
+serviceAccount:
+  create: true
+  name: ""
+
+# Ingress Configuration
+ingress:
+  enabled: false
+  annotations: {}
+  hosts:
+    - host: chart-example.local
+      paths: []
+  tls: []
+
+# Autoscaling Configuration
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+
+# Image Configuration
+image:
+  repository: "saadamir1/game-hub" 
+  tag: "latest"                
+  pullPolicy: IfNotPresent
+
+# Resources Configuration
+resources: {}
+
+# Replica Count for Deployment
+replicaCount: 1

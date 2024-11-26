@@ -1,0 +1,16 @@
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: game-hub-ingress
+# spec:
+#   rules:
+#     - host: gamehub.local 
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: game-hub-service  
+#                 port:
+#                   number: 80  # Exposed port

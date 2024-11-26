@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: game-hub-deployment
+spec:
+  replicas: 1  # Number of pods to run
+  selector:
+    matchLabels:
+      app: game-hub
+  template:
+    metadata:
+      labels:
+        app: game-hub
+    spec:
+      containers:
+      - name: game-hub
+        image: saadamir1/game-hub:latest  
+        ports:
+        - containerPort: 5173 
