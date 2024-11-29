@@ -56,10 +56,11 @@ jobs:
         run: curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
       # 3. Configure Kubernetes context
-      - name: Configure Kubernetes
-        run: |
-          echo "${{ secrets.KUBECONFIG }}" > kubeconfig.yaml
-          export KUBECONFIG=kubeconfig.yaml
+    - name: Configure Kubernetes
+      run: |
+        echo "${{ secrets.KUBECONFIG }}" > kubeconfig.yaml
+        export KUBECONFIG=$PWD/kubeconfig.yaml
+        kubectl version --short  # Verify kubectl access
 
       # 4. Deploy with Helm
       - name: Deploy with Helm
