@@ -38,3 +38,7 @@ resources: {}
 
 # Replica Count for Deployment
 replicaCount: 1
+
+cluster:
+  endpoint: https://127.0.0.1:56961
+
