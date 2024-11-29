@@ -3,10 +3,10 @@ name: CI/CD for Game Hub
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -28,9 +28,9 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/game-hub:${{ github.sha }}  # Commit-based tag
-            ${{ secrets.DOCKER_USERNAME }}/game-hub:${{ github.ref_name }}  # Branch name tag
-            ${{ secrets.DOCKER_USERNAME }}/game-hub:latest  # Always points to the most recent successful build
+            ${{ secrets.DOCKER_USERNAME }}/game-hub:${{ github.sha }}
+            ${{ secrets.DOCKER_USERNAME }}/game-hub:${{ github.ref_name }}
+            ${{ secrets.DOCKER_USERNAME }}/game-hub:latest
           cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/game-hub:cache
           cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/game-hub:cache,mode=max
 
