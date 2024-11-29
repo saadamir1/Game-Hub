@@ -4,11 +4,10 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-# Install only production dependencies
-RUN npm install --only=production
+RUN npm install
 
 COPY . .
 
 EXPOSE 5173
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "dev", "--", "--no-open"]
