@@ -60,7 +60,7 @@ jobs:
         run: |
           echo "${{ secrets.KUBECONFIG }}" > kubeconfig.yaml
           export KUBECONFIG=$PWD/kubeconfig.yaml
-          kubectl version --short  # Verify kubectl access
+          kubectl version  # Verify kubectl access
 
       # 4. Deploy with Helm
       - name: Deploy with Helm
