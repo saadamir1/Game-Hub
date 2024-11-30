@@ -56,7 +56,7 @@ jobs:
       # 2. Start Minikube
       - name: Start Minikube
         run: |
-          sudo minikube start --driver=none
+          sudo minikube start --driver=docker
           sudo chown -R $USER $HOME/.minikube/
 
       # 3. Configure kubectl for Minikube
