@@ -63,10 +63,9 @@ jobs:
       - name: Configure kubectl
         run: |
           mkdir -p ~/.kube
-          sudo chown -R $USER $HOME/.kube
-          sudo chown -R $USER $HOME/.minikube
-          minikube kubeconfig > ~/.kube/config
-          export KUBECONFIG=~/.kube/config
+          chown -R $USER $HOME/.kube
+          chown -R $USER $HOME/.minikube
+          export KUBECONFIG=~$HOME/.kube/config
 
       # 4. Verify Kubernetes Cluster
       - name: Verify Cluster Connection
