@@ -76,6 +76,7 @@ jobs:
         run: |
           kubectl cluster-info
           kubectl get nodes
+          kubectl get services
 
       # 6. Set up Helm
       - name: Set up Helm
@@ -84,3 +85,14 @@ jobs:
       # 7. Deploy with Helm
       - name: Deploy with Helm
         run: helm upgrade --install game-hub ./my-game-hub --set image.repository=${{ secrets.DOCKER_USERNAME }}/game-hub,image.tag=${{ github.sha }}
+      
+        # 8. Port-forward Minikube Service (for local access within GitHub Actions)
+      - name: Port Forwarding to expose the app
+        run: |
+          kubectl port-forward svc/game-hub-service 8080:80 &
+          sleep 10 # Give it a few seconds to start port forwarding
+          curl http://localhost:8080 # Check if the app is accessible
+
+      # 9. Show success message in logs (optional)
+      - name: Show App URL
+        run: echo "App is accessible at http://localhost:8080"

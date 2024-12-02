@@ -9,4 +9,5 @@ spec:
     - protocol: TCP
       port: 80  # Exposed port for external traffic
       targetPort: 5173  # Port inside the container
-  type: LoadBalancer 
+      nodePort: 30080
+  type: NodePort 
