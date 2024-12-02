@@ -46,20 +46,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Install Minikube
+      # 1. Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Install Minikube
       - name: Install Minikube
         run: |
           curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
           chmod +x minikube
           sudo mv minikube /usr/local/bin/
 
-      # 2. Start Minikube
+      # 3. Start Minikube
       - name: Start Minikube
         run: |
           minikube start --driver=docker
           chown -R $USER $HOME/.minikube/
 
-      # 3. Configure kubectl for Minikube
+      # 4. Configure kubectl for Minikube
       - name: Configure kubectl
         run: |
           mkdir -p ~/.kube
@@ -67,16 +71,16 @@ jobs:
           chown -R $USER $HOME/.minikube
           export KUBECONFIG=~$HOME/.kube/config
 
-      # 4. Verify Kubernetes Cluster
+      # 5. Verify Kubernetes Cluster
       - name: Verify Cluster Connection
         run: |
           kubectl cluster-info
           kubectl get nodes
 
-      # 5. Set up Helm
+      # 6. Set up Helm
       - name: Set up Helm
         run: curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
-      # 6. Deploy with Helm
+      # 7. Deploy with Helm
       - name: Deploy with Helm
         run: helm upgrade --install game-hub ./my-game-hub --set image.repository=${{ secrets.DOCKER_USERNAME }}/game-hub,image.tag=${{ github.sha }}
