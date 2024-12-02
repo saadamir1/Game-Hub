@@ -78,6 +78,8 @@ jobs:
           kubectl get nodes
           kubectl get services
           kubectl get pods
+          kubectl get deployments
+
 
       # 6. Set up Helm
       - name: Set up Helm
